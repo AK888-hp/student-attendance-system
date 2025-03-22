@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%block title%}Mark Attendance{%endblock title%}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    {%block content%}
+    <canvas id="attendanceChart"></canvas>
+    <canvas id="marksChart"></canvas>
+    <script>
+        var attendance = {{ attendance }};
+        var marks = {{ marks|safe }};
+
+        var ctx1 = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Attendance'],
+                datasets: [{
+                    label: 'Attendance Count',
+                    data: [attendance],
+                    backgroundColor: 'blue'
+                }]
+            }
+        });    
+        {%endblock content%}
+</body>
+</html>
